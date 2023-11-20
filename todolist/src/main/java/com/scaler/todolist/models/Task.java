@@ -12,7 +12,10 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter(AccessLevel.PUBLIC)
 @Setter(AccessLevel.PUBLIC)
+
 public class Task {
+
+    private String id;
     private String name;
     private LocalDate due;
     private Boolean done;
@@ -22,7 +25,7 @@ public class Task {
      * due date 5 days from now, and done = false
      * @param name
      */
-    public Task(String name) {
-        this(name, LocalDate.now().plus(5, ChronoUnit.DAYS), false);
+    public Task(String id, String name) {
+        this(id,name, LocalDate.now().plus(5, ChronoUnit.DAYS), false);
     }
 }

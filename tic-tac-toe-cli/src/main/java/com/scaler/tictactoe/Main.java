@@ -1,10 +1,31 @@
 package com.scaler.tictactoe;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 public class Main {
     public static void main(String[] args) {
 
         Game game = new Game("X", "O");
-        System.out.println(game.printGameState());
+        Player winner;
+        int numOfTurns = 0;
+
+        do{
+            System.out.println("Please enter input for :" + game.getNextTurn().getCharacter());
+            String input = game.readInput();
+            while(!game.isInputValid(input))
+                input = game.readInput();
+
+            game.nextAttempt(Integer.parseInt(input));
+            game.printGameState();
+            numOfTurns++;
+        }while((winner = game.checkVictory(game.getGameState())) == null && (numOfTurns < 9));
+
+        if(winner == null){
+            System.out.println("Its a tie!!");
+        }else{
+            System.out.println("Winner is " + (winner.getCharacter() == "X"? "O":"X"));
+        }
 
         /*
         TODO: Create the entire game; steps are:
